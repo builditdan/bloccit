@@ -1,7 +1,10 @@
+include MyUtilities
+
 class PostsController < ApplicationController
+
   def index
     @posts = Post.all
-
+    @posts = censor_posts(@posts)
   end
 
   def show
@@ -12,4 +15,7 @@ class PostsController < ApplicationController
 
   def edit
   end
+
+
+
 end
