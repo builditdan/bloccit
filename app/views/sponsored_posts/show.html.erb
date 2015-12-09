@@ -1,5 +1,5 @@
 <h1><%= @sponsored_post.title %></h1>
-
+<p>Topic: <%= link_to @sponsored_post.topic.name, @sponsored_post.topic %></p>
 <div class="row">
   <div class="col-md-8">
     <p><%= @sponsored_post.body %></p>
