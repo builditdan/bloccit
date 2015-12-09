@@ -9,4 +9,7 @@
     <%= link_to "Delete Post", [@post.topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
   </div>
   </div>
+  <br>
+  <p>Topic: <%= link_to @post.topic.name, @post.topic %></p>
+
 </div>
