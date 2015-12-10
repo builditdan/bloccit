@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
 #  before_save { self.email = email.downcase }
   before_save {
     self.email = email.downcase
-    self.name = name.to_s.split(' ').map(&:capitalize).join(' ')
+    #convert name to a string
+    temp = name.to_s
+    #split name into words and then capitalize but only if a space exists
+    self.name = temp.split(' ').map(&:capitalize).join(' ') if temp.match(/.\s./) 
   }
 
 
