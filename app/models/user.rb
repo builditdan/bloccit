@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
 
+has_many :posts
 #  before_save { self.email = email.downcase }
   before_save {
     self.email = email.downcase
     #convert name to a string
     temp = name.to_s
     #split name into words and then capitalize but only if a space exists
-    self.name = temp.split(' ').map(&:capitalize).join(' ') if temp.match(/.\s./) 
+    self.name = temp.split(' ').map(&:capitalize).join(' ') if temp.match(/.\s./)
   }
 
 
