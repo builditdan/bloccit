@@ -18,10 +18,21 @@
 
     <div class="pull-right user-info">
       <% if current_user %>
-        <%= current_user.name %> - <%= link_to "Sign Out", session_path(current_user), method: :delete %>
+        <img class="gravatar_pic" src="<%= avatar_url(current_user) %>" alt="My Gravatar">
+        <br>
+        <div class="user-login">
+          <%= current_user.name %>
+          <br>
+          <%= link_to "Sign Out", session_path(current_user), method: :delete %>
+        </div>
       <% else %>
-        <%= link_to "Sign In", new_session_path %> or
-        <%= link_to "Sign Up", new_user_path %>
+        <img class="gravatar_pic" src="/assets/blank_avatar_220.png" alt="My Gravatar">
+        <br>
+        <div class="user-login">
+          <%= link_to "Sign In", new_session_path %> or
+          <br>
+          <%= link_to "Sign Up", new_user_path %>
+        </div>
       <% end %>
 
     </div>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def new
+    destroy_session(current_user)
     @user = User.new
   end
 

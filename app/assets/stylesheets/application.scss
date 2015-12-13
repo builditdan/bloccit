@@ -17,9 +17,31 @@
  @import "bootstrap";
 
  .user-info {
-   margin-top: 9px;
+   margin-top: 150px;
+   margin-right: 20px;
  }
 
  .nav {
-   margin-top: 5px;
+   margin-top: 40px;
+ }
+ .gravatar_pic {
+   position: absolute;
+   top:10px;
+   left: 1200px;
+   border:1px none;
+   border-radius: 50px;
+   width: 60px;
+   height: 60px;
+ }
+
+ .user-login {
+   position: absolute;
+   left: 1275px;
+   top:0px;
+   margin-top: 15px;
+   margin-bottom: 5px;
+   margin-right: 5px;
+   margin-left: 5px;
+   font-size:18px;
+   font-weight: bold;
  }
