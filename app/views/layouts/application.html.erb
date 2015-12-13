@@ -14,28 +14,26 @@
       <li><%= link_to "Bloccit", root_path %></li>
       <li><%= link_to "Topics", topics_path %></li>
       <li><%= link_to "About", about_path %></li>
-    </ul>
 
-    <div class="pull-right user-info">
+    <div class="pull-right">
       <% if current_user %>
         <img class="gravatar_pic" src="<%= avatar_url(current_user) %>" alt="My Gravatar">
-        <br>
-        <div class="user-login">
+        <div class="pull-right user-login">
           <%= current_user.name %>
           <br>
           <%= link_to "Sign Out", session_path(current_user), method: :delete %>
         </div>
       <% else %>
         <img class="gravatar_pic" src="/assets/blank_avatar_220.png" alt="My Gravatar">
-        <br>
-        <div class="user-login">
+        <div class="pull-right user-login">
           <%= link_to "Sign In", new_session_path %> or
           <br>
           <%= link_to "Sign Up", new_user_path %>
         </div>
       <% end %>
-
     </div>
+
+    </ul>
 
     <% if flash[:notice] %>
       <div class="alert alert-success">
