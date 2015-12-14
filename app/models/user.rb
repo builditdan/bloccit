@@ -10,6 +10,8 @@ has_many :posts
     self.name = temp.split(' ').map(&:capitalize).join(' ') if temp.match(/.\s./)
   }
 
+  before_save {self.role ||= :member }
+
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -26,6 +28,7 @@ has_many :posts
 
   has_secure_password
 
+  enum role: [:member, :admin]
 
 
 end

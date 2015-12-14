@@ -1,4 +1,8 @@
 class TopicsController < ApplicationController
+
+before_action :require_sign_in, except: [:index, :show]
+before_action :authorize_user, except: [:index, :show]
+
 def index
   @topics = Topic.all
 end
@@ -44,7 +48,6 @@ end
 
 def destroy
   @topic = Topic.find(params[:id])
-
   if @topic.destroy
     flash[:notice] = "\"#{@topic.name}\" was deleted successfully."
     redirect_to action: :index
@@ -60,6 +63,18 @@ private
     params.require(:topic).permit(:name, :description, :public)
   end
 
+  def authorize_user
+
+    unless current_user.admin?
+      # Can't figure out why flash.now is not working, had to 
+      # use flash, think only supported with a render ???
+      #flash.now[:alert] = "You must be an admin to do that."
+      flash[:alert] = "You must be an admin to do that!!"
+      redirect_to topics_path
+
+
+    end
+  end
 
 #### class end
 end
