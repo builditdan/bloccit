@@ -65,15 +65,28 @@ private
 
   def authorize_user
 
-    unless current_user.admin?
-      # Can't figure out why flash.now is not working, had to 
+    unless current_user.admin? || user_moderator_authorized?
+      # Can't figure out why flash.now is not working, had to
       # use flash, think only supported with a render ???
       #flash.now[:alert] = "You must be an admin to do that."
       flash[:alert] = "You must be an admin to do that!!"
       redirect_to topics_path
-
-
     end
+
+  end
+
+  def user_moderator_authorized?
+    #false
+    if current_user.moderator? && params[:action] == "destroy"
+      false
+    elsif current_user.moderator? && params[:action] == "new"
+      false
+    elsif current_user.moderator? && params[:action] == "create"
+      false
+    elsif current_user.moderator?
+      true
+    end
+
   end
 
 #### class end

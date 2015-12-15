@@ -18,7 +18,7 @@
     <% end %>
   </div>
   <div class="col-md-4">
-    <% if user_is_authorized_for_topics? %>
+    <% if user_is_authorized_to_delete_topics? %>
       <div class="col-md-4">
         <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
       </div>
