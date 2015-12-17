@@ -4,18 +4,16 @@
 <div class="row">
   <div class="col-md-8">
 
-    <% @topics.each do |topic| %>
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading">
-          <%= link_to topic.name, topic %>
-        </h4>
-        <small>
-          <%= topic.description %>
-        </small>
-      </div>
-    </div>
-    <% end %>
+   <!--
+    The render method below calls "_topic_html.erb"
+    iterating thru all the topics - the "_topic_html.erb"
+    file is the default name looked for in /posts and
+    it automatically iterates thru all the topics since
+    it knows it is a collection. This is DRY code
+    in action leveraging the concept of syntactic sugar
+   -->
+   <%= render @topics =%>
+
   </div>
   <div class="col-md-4">
     <% if user_is_authorized_to_delete_topics? %>
