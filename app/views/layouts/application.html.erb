@@ -33,13 +33,12 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <%= flash[:notice] %>
       </div>
-    <% elsif flash.now[:alert] %>
+    <% elsif flash[:alert] %>
       <br>
       <br>
       <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <%= flash.now[:alert] %>
-      </div>
+        <%= flash[:alert] %>
     <% elsif flash[:alert] %>
       <br>
       <br>

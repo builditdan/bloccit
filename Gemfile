@@ -21,6 +21,9 @@ source 'https://rubygems.org'
    gem 'sqlite3'
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
+   gem 'byebug'
+   gem 'better_errors'
+   gem 'binding_of_caller'
  end
 
  gem 'bootstrap-sass'
