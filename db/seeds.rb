@@ -58,9 +58,20 @@ member = User.create!(
    role: 'moderator'
  )
 
+rated_pg = Rating.create!(
+  severity: 'PG'
+)
 
+rated_pg13 = Rating.create!(
+  severity: 'PG13'
+)
+
+ rated_r = Rating.create!(
+  severity: 'R'
+)
 
 puts "Seed finished"
+puts "#{Rating.count} ratings created"
 puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"

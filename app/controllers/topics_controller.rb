@@ -9,14 +9,17 @@ end
 
 def show
   @topic = Topic.find(params[:id])
+  @rating = Rating.find(@topic.rating) if @topic.rating != nil
 end
 
 def new
   @topic = Topic.new
+  @rating = Rating.new
 end
 
 def create
   @topic = Topic.new(topic_params)
+  @topic.rating = Rating.update_rating(params[:topic][:rating])
 
   if @topic.save
     @topic.labels = Label.update_labels(params[:topic][:labels])
@@ -30,12 +33,13 @@ end
 
 def edit
   @topic = Topic.find(params[:id])
+  @rating = Rating.find(@topic.rating) if @topic.rating != nil
 end
 
 def update
   @topic = Topic.find(params[:id])
-
   @topic.assign_attributes(topic_params)
+  @topic.rating = Rating.update_rating(params[:topic][:rating])
 
   if @topic.save
     @topic.labels = Label.update_labels(params[:topic][:labels])

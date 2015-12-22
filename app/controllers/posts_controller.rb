@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @rating = Rating.find(@post.rating) if @post.rating != nil
   end
 
   def new
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @rating = Rating.find(@post.rating) if @post.rating != nil
   end
 
   def create
@@ -23,6 +25,8 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     @post.topic = @topic
+
+    @post.rating = Rating.update_rating(params[:post][:rating])
 
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
@@ -38,7 +42,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.assign_attributes(post_params)
-
+    @post.rating = Rating.update_rating(params[:post][:rating])
     if @post.save
       @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was updated."

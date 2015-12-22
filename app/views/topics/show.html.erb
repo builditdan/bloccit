@@ -1,4 +1,6 @@
-<h1><%= @topic.name %></h1>
+<h1><%= @topic.name %>
+<%= render partial: "ratings/display", locals: {the_rating: @rating} %>
+</h1>
 
 <% if user_is_authorized_to_edit_topics? %>
   <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
