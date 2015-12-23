@@ -257,6 +257,16 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to my_topic
       end
     end
+
+    describe "NEW vote" do
+      it "creates a new vote when a user posts" do
+        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        #expect{ post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph} }.to change(Post,:count).by(1)
+        expect(post.rank).to eq (post.points + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds)
+        #post has a field called ranl
+      end
+    end
+
   end
 
   context "admin user doing CRUD on a post they don't own" do
@@ -396,20 +406,6 @@ RSpec.describe PostsController, type: :controller do
         end
       end
 
-  #    describe "GET new" do
-  #     it "returns http success" do
-  #        get :new, topic_id: my_topic.id, id: my_post.id
-  #        expect(response).to redirect_to([my_topic])
-  #      end
-  #    end
-
-  #    describe "POST create" do
-  #      it "returns http redirect" do
-  #        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-  #        expect(response).to redirect_to([my_topic])
-  #      end
-  #    end
-
       describe "GET new" do
         it "returns http success" do
           get :new, topic_id: my_topic.id
@@ -425,6 +421,7 @@ RSpec.describe PostsController, type: :controller do
           get :new, topic_id: my_topic.id
           expect(assigns(:post)).not_to be_nil
         end
+
       end
 
       describe "POST create" do
@@ -441,6 +438,7 @@ RSpec.describe PostsController, type: :controller do
           post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
           expect(response).to redirect_to [my_topic, Post.last]
         end
+
       end
 
       describe "GET edit" do
@@ -462,6 +460,7 @@ RSpec.describe PostsController, type: :controller do
           expect(post_instance.title).to eq my_post.title
           expect(post_instance.body).to eq my_post.body
         end
+
       end
 
       describe "PUT update" do
@@ -484,13 +483,15 @@ RSpec.describe PostsController, type: :controller do
           put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
           expect(response).to redirect_to [my_topic, my_post]
         end
+
       end
 
-      describe "DELETE destroyxx" do
+      describe "DELETE destroy" do
         it "deletes the post" do
           delete :destroy, topic_id: my_topic.id, id: my_post.id
           expect(response).to redirect_to [my_topic]
         end
+
       end
 
     end
