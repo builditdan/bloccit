@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
+
+  after_create :create_vote
+
   has_many :comments, dependent: :destroy
 
   has_many :labelings, as: :labelable
@@ -31,5 +34,19 @@ class Post < ActiveRecord::Base
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
   end
+
+private
+
+  def create_vote
+    # why can't I access current_user.id, or @post,
+    # or params.. had to use self
+    # how I catch errors if the create fails? flash below does not work
+    # this works as well --> new_vote = user.votes.create(value: 1, user_id: self.user_id, post_id: self.id)
+    new_vote = user.votes.create(value: 1, post: self)
+#    if new_vote == nil
+#     flash.now[:alert] = "There was an error saving the vote. Please vote manually."
+#    end
+  end
+
 
 end

@@ -258,15 +258,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe "NEW vote" do
-      it "creates a new vote when a user posts" do
-        post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-        #expect{ post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph} }.to change(Post,:count).by(1)
-        expect(post.rank).to eq (post.points + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds)
-        #post has a field called ranl
-      end
-    end
-
   end
 
   context "admin user doing CRUD on a post they don't own" do

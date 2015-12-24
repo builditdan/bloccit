@@ -81,6 +81,15 @@ RSpec.describe Post, type: :model do
         post.votes.create!(value: -1)
         expect(post.rank).to eq (old_rank - 1)
       end
+
+    end
+
+    describe "CHECK vote" do
+      it "confirm new vote is created with new post" do
+        topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user:user)
+        num_votes = post.votes.where(post_id:post.id).count
+        expect(num_votes).to be > (0)
+      end
     end
 
   end
