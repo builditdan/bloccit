@@ -5,6 +5,7 @@ include SessionsHelper
 
  RSpec.describe VotesController, type: :controller do
 
+   # need to associate the vote with the user
    let(:my_vote) { Vote.create!(value: 1) }
    let(:my_topic) { create(:topic) }
    let(:my_user) { create(:user) }

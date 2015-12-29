@@ -7,8 +7,8 @@ include RandomData
    let(:user) { create(:user) }
    let(:post) { create(:post) }
 
-   let(:label) { Label.create!(name: 'Label') }
-   let(:label2) {Label.create!(name: 'Label2')}
+   let(:label) { create(:label) }
+   let(:label2) { create(:label2) }
 
    it { should have_many :labelings }
 

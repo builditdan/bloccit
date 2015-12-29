@@ -11,6 +11,12 @@ RSpec.describe UsersController, type: :controller do
       }
     end
 
+    let(:my_user) { create(:user) }
+  #  let(:my_topic) { create(:topic) }
+  #  let(:user_post) { create(:post, topic: my_topic, user: my_user) }
+  #  let(:my_vote) { Vote.create!(value: 1) }
+
+
     describe "GET new" do
 
       it "returns http success" do
@@ -25,6 +31,7 @@ RSpec.describe UsersController, type: :controller do
 
     end
 
+
     describe "POST create" do
       it "returns an http redirect" do
         post :create, user: new_user_attributes
@@ -32,7 +39,6 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "creates a new user" do
-        #expect{ post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
         expect{ post :create, user: new_user_attributes}.to change(User,:count).by(1)
       end
 
