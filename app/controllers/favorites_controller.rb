@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
     if favorite.save
       flash[:notice] = "Post favorited."
     else
-      flash[:alert] = "favoriting failed."
+      flash[:alert] = "Favoriting failed."
     end
 
     redirect_to [post.topic, post]
