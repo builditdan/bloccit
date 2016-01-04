@@ -148,6 +148,13 @@ RSpec.describe User, type: :model do
 
    end
 
+   describe "#generate_auth_token" do
+     it "create a token" do
+       expect(user.auth_token).to_not be_nil
+     end
+   end
+
+
 
 #### end rspec
 end
