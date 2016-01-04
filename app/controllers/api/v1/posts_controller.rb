@@ -10,11 +10,11 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def show
     post = Post.find(params[:id])
-    #render json: post.to_json, status: 200
-    comments = Comment.find(post.id)
-    respond_to do |format|
-      format.json  { render json: post.to_json(include: [:comments])}
-    end
+    render json: post.to_json, status: 200
+    #comments = Comment.find(post.id)
+    #respond_to do |format|
+  #    format.json  { render json: post.to_json(include: [:comments])}
+#    end
   end
 
 
